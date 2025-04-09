@@ -44,7 +44,7 @@ module OmniAuth
       def raw_info
         access_token.options[:mode] = :header
         if @raw_info.nil?
-          acct = access_token.get('/1.1/accounts').parsed.first
+          acct = access_token.get('/1.1/accounts').parsed.last
           acct_id = acct['id'] 
         end
         @raw_info ||= access_token.get("/1.1/#{acct_id}/users/current").parsed.merge({account: acct})
